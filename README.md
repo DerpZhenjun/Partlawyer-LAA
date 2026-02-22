@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="./assets/logo.png" alt="PartLawyer Logo" width="200">
+  <img src="./ChatVRM/public/logo.png" alt="PartLawyer Logo" width="200">
 </p>
 
-<h1 align="center">PartLawyer</h1>
+<h1 align="center">PartLawyer-Labor Arbitration Assistant</h1>
 
 <p align="center">
-  <strong>基于 DeepSeek-Qwen 的劳动仲裁智能法律助手</strong>
+  <strong>劳动仲裁文书生成——辅助平台</strong>
 </p>
 
 <p align="center">
