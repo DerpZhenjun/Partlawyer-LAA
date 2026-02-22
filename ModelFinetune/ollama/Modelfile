@@ -1,0 +1,29 @@
+﻿FROM ./model.Q4_K_M.gguf
+
+# 【关键修正 1】：模板格式优化
+# Qwen 严格要求每个 block 结束后必须显式跟一个换行符，
+# 且 assistant 标签后也需要换行，否则容易造成死循环。
+TEMPLATE """{{ if .System }}<|im_start|>system
+{{ .System }}<|im_end|>
+{{ end }}{{ if .Prompt }}<|im_start|>user
+{{ .Prompt }}<|im_end|>
+{{ end }}<|im_start|>assistant
+"""
+
+# 【关键修正 2】：强制指定系统提示词
+# 如果你在训练时没有使用 System Prompt，这里留空或设置简单的引导有助于稳定模型
+SYSTEM "你是人工智能律师阿律，精通《中华人民共和国劳动法》及劳动仲裁实务。请根据以下案情事实提供专业的法律建议、案件分析或文书草案。"
+
+# 【关键修正 3】：显式增加停止参数
+PARAMETER stop "<|im_start|>"
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "<|endoftext|>"
+
+# 【关键修正 4】：参数调整
+PARAMETER repeat_penalty 1.05
+PARAMETER temperature 0.1
+PARAMETER top_k 20
+PARAMETER top_p 0.9
+
+# 显式指定上下文窗口
+PARAMETER num_ctx 2048

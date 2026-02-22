@@ -1,0 +1,134 @@
+/* 1. 定义全局变量 (方便后期统一改色) */
+:root {
+  --primary-color: #ebab62;       /* 主题金色 */
+  --primary-hover: #d4954d;       /* 按钮悬停色 */
+  --text-dark: #2c3e50;           /* 深色文字 */
+  --text-light: #606266;          /* 浅色文字 */
+  --bg-color: #f5f7fa;            /* 默认背景色 */
+  
+  /* 字体设置：优先使用苹方等适合中文显示的字体 */
+  font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* 字体抗锯齿，让文字更清晰 */
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 2. 核心重置：解决上方白边和背景不铺满的问题 */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* 防止横向滚动条 */
+}
+
+body {
+  /* 【关键修改】移除原来的 display: flex; place-items: center; */
+  /* 原来的写法强制所有内容垂直居中，这是导致你布局奇怪的根本原因 */
+  display: block; 
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+}
+
+/* 3. 容器重置：让 Vue 的根节点占满屏幕 */
+#app {
+  /* 【关键修改】移除 max-width 和 padding，让页面可以全宽显示 */
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left; /* 恢复默认左对齐 */
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* 4. 链接样式优化 */
+a {
+  font-weight: 500;
+  color: var(--primary-color);
+  text-decoration: none; /* 去掉下划线 */
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: var(--primary-hover);
+}
+
+/* 5. 按钮全局样式 (兜底样式) */
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* 6. 滚动条美化 (让右侧滚动条看起来更现代) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc; 
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #aaa; 
+}
+
+/* 7. 动画库补充 (配合 Vue 的 Animate.css 使用) */
+/* 如果你没装 animate.css，这可以作为简单的替代 */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate__fadeInDown {
+  animation-name: fadeInDown;
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate__fadeInUp {
+  animation-name: fadeInUp;
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+}
