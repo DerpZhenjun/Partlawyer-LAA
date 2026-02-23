@@ -55,6 +55,7 @@ params.append("prompt_text", "就像帕斯卡一直想要告诉你真相那样..
 
 #### 4.🤖替换大语言模型（可选）
 ```bash
+ollama run qwen3:1.7b
 在backend\llm_service\QA.py下修改：model: str = "ollama/qwen3:1.7b"
 在ChatVRM\src\features\chat\openAiChat.ts下修改: const OLLAMA_MODEL = "qwen3:1.7b"
 ```
