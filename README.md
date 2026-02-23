@@ -26,4 +26,21 @@
 
 ---
 
-## 📖 演示视频
+## 📖 项目简介
+
+**PartLawyer** 是一款针对劳动仲裁场景设计的智能化辅助平台。项目通过微调的 **DeepSeek-Qwen** 大模型提供专业的法律逻辑支持，并集成 **ChatVRM** 3D数字人交互与 **GPT-SoVITS** 语音克隆技术，为非法律专业用户提供直观、温馨的法律咨询与文书生成体验。
+
+## 📺 演示视频
+
+*(此处可粘贴你的 Bilibili 演示视频链接)*
+
+## 📖 部署流程
+
+```bash
+# 克隆仓库
+git clone [https://github.com/你的用户名/Partlawyer-LAA.git](https://github.com/你的用户名/Partlawyer-LAA.git)
+cd Partlawyer-LAA
+
+# 创建并激活虚拟环境
+conda create -n pl python=3.10 -y
+conda activate pl
