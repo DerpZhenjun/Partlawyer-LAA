@@ -32,13 +32,13 @@ https://huggingface.co/DerpZhenjun/PartLawyer-LAA/tree/main
 
 ## 🛠️ 部署流程
 
-#### 1.克隆仓库
+#### 1.🐑克隆仓库
 ```bash
 git clone https://github.com/singlerock/Partlawyer-LAA.git
 cd Partlawyer-LAA
 ```
 
-#### 2.🎙️ 完善 GPT-SoVITS
+#### 2.🎙️完善 GPT-SoVITS
 ```bash
 将 鸣潮-e10.ckpt 放入 GPT-SoVITS/GPT_weights/
 将 鸣潮_e10_s5220.pth 放入 GPT-SoVITS/SoVITS_weights/
@@ -46,14 +46,14 @@ cd Partlawyer-LAA
 将 chinese-roberta-wwm-ext-large 放入 GPT_SoVITS/GPT_SoVITS/pretrained_models/
 ```
 
-#### 3.👤 完善 ChatVRM
+#### 3.👤完善 ChatVRM
 ```bash
 在 ChatVRM\src\features\messages\speakCharacter.ts 修改参考音频及其文本内容：
 params.append("ref_audio_path", "D:\\...\\zh_vo_zhuiyuejie_second_58_46_F.wav");
 params.append("prompt_text", "就像帕斯卡一直想要告诉你真相那样...");
 ```
 
-#### 4.🤖 替换大语言模型（可选）
+#### 4.🤖替换大语言模型（可选）
 ```bash
 在backend\llm_service\QA.py下修改：model: str = "ollama/qwen3:1.7b"
 在ChatVRM\src\features\chat\openAiChat.ts下修改: const OLLAMA_MODEL = "qwen3:1.7b"
@@ -97,7 +97,3 @@ https://huggingface.co/unsloth/Qwen3-1.7B
 https://huggingface.co/datasets/ShengbinYue/DISC-Law-SFT
 
 https://huggingface.co/datasets/Skepsun/lawyer_llama_data
-
-
-
-
