@@ -152,9 +152,9 @@ tts_config.device = "cuda"
 tts_config.is_half = True
 tts_config.version = "v2"  # 确保版本对齐
 
-# 顺便把你的鸣潮模型也强制锁死，省得它去加载底模
-tts_config.t2s_weights_path = "GPT_weights/鸣潮-e10.ckpt"
-tts_config.vits_weights_path = "SoVITS_weights/鸣潮_e10_s5220.pth"
+# 顺便把鸣潮模型也强制锁死，省得它去加载底模
+tts_config.t2s_weights_path = "GPT_weights/MingChao-e10.ckpt"
+tts_config.vits_weights_path = "SoVITS_weights/MingChao_e10_s5220.pth"
 
 print("--- 强制配置已生效 ---")
 print(tts_config)
