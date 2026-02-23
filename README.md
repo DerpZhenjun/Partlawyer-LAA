@@ -5,12 +5,14 @@
 <h1 align="center">PartLawyer - Labor Arbitration Assistant</h1>
 
 <p align="center">
-<strong>劳动仲裁文书生成 —— 辅助平台</strong>
+<strong>劳动仲裁文书生成辅助平台</strong>
 </p>
 
 <p align="center">
 <a href="https://github.com/pixiv/ChatVRM"> <img src="https://img.shields.io/badge/Digital%20Human-ChatVRM-FF4081?style=flat&logo=pixiv" alt="ChatVRM"></a>
 <a href="https://github.com/RVC-Boss/GPT-SoVITS"> <img src="https://img.shields.io/badge/Voice%20Cloning-GPT--SoVITS-FF5722?style=flat&logo=github" alt="GPT-SoVITS"></a>
+<a href="https://unsloth.ai/"> <img src="https://img.shields.io/badge/Finetune-Unsloth-7431ff?style=flat&logo=unsloth" alt="Unsloth"></a>
+<a href="https://ollama.com/"> <img src="https://img.shields.io/badge/Inference-Ollama-white?style=flat&logo=ollama" alt="Ollama"></a>
 <a href="https://hub.vroid.com/en/characters/6317386427492305874/models/6271821272125919618"> <img src="https://img.shields.io/badge/3D%20Model-VRoid%20Hub-00B0FF?style=flat&logo=vroid" alt="VRM Model"></a>
 <a href="https://www.ai-hobbyist.com/thread-938-1-1.html"> <img src="https://img.shields.io/badge/TTS%20Weights-AI%20Hobbyist-9E9E9E?style=flat" alt="TTS Weights"></a>
 <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="license">
@@ -46,7 +48,6 @@ cd Partlawyer-LAA
 
 #### 3.👤 完善 ChatVRM
 ```bash
-在 https://hub.vroid.com/en/characters/6317386427492305874/models/6271821272125919618或 下载 VRM 模型，然后将模型命名为 AvatarSample_B.vrm 并放入 ChatVRM/public/ 目录下。
 在 ChatVRM\src\features\messages\speakCharacter.ts 修改参考音频及其文本内容：
 params.append("ref_audio_path", "D:\\...\\zh_vo_zhuiyuejie_second_58_46_F.wav");
 params.append("prompt_text", "就像帕斯卡一直想要告诉你真相那样...");
@@ -87,13 +88,15 @@ https://github.com/pixiv/ChatVRM
 
 https://github.com/RVC-Boss/GPT-SoVITS
 
-https://unsloth.ai/docs/new/500k-context-length-fine-tuning
+https://unsloth.ai/docs
 
 https://docs.ollama.com/modelfile
 
 https://huggingface.co/unsloth/Qwen3-1.7B
 
+https://huggingface.co/datasets/ShengbinYue/DISC-Law-SFT
 
+https://huggingface.co/datasets/Skepsun/lawyer_llama_data
 
 
 
