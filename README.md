@@ -74,6 +74,7 @@ npm install
 cd ..
 cd frontend
 npm install
+cd ..
 ./start.bat # 启动
 ```
 
