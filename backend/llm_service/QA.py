@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 async def generate_lawyer_chat(
     history: List[Dict[str, str]], 
-    model: str = "ollama/partlawyer",
+    model: str = "ollama/qwen3:1.7b", #在这里替换模型
     api_base: str = "http://localhost:11434",
     temperature: float = 0.6
 ) -> AsyncGenerator[str, None]:

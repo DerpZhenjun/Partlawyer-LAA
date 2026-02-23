@@ -3,7 +3,7 @@ import { Message } from "../messages/messages";
 // ==========================================
 //在此处修改你的 Ollama 模型名称
 // 例如: "qwen2.5", "llama3", "gemma2", "deepseek-r1"
-const OLLAMA_MODEL = "partlawyer"; 
+const OLLAMA_MODEL = "qwen3:1.7b"; 
 // ==========================================
 
 export async function getChatResponse(messages: Message[], apiKey: string) {
