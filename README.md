@@ -78,6 +78,9 @@ conda activate unsloth
 pip install "unsloth[colab-new] @ git+[https://github.com/unslothai/unsloth.git](https://github.com/unslothai/unsloth.git)"
 pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url [https://download.pytorch.org/whl/cu121](https://download.pytorch.org/whl/cu121)
 pip install -r requirements-wsl.txt
+修改模型路径与数据集路径：
+model_name = "/mnt/d/workspace/PartLawyer/ModelFinetune/model" #修改
+dataset_path = "/mnt/d/workspace/PartLawyer/ModelFinetune/dataset/labor_train_dataset.jsonl" #修改
 python train.py
 ```
 
