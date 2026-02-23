@@ -67,7 +67,6 @@ ollama run qwen3:1.7b
 conda create -n LAA python=3.10 -y
 conda activate LAA
 pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu121
-(pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu121 -i https://pypi.tuna.tsinghua.edu.cn/simple 国内镜像)
 pip install -r requirements.txt
 cd ChatVRM
 npm list
@@ -83,7 +82,6 @@ wsl --install -d Ubuntu-22.04
 conda activate unsloth
 pip install "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git"
 pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu121
-(pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu121 -i https://pypi.tuna.tsinghua.edu.cn/simple 国内镜像)
 pip install -r requirements-wsl.txt
 修改模型路径与数据集路径：
 model_name = "/mnt/d/workspace/PartLawyer/ModelFinetune/model" #修改
