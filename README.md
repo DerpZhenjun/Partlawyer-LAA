@@ -80,11 +80,17 @@ python train.py
 
 ## ❤️ 特别鸣谢
 https://www.ai-hobbyist.com/thread-938-1-1.html
+
 https://hub.vroid.com/en/characters/6317386427492305874/models/6271821272125919618
+
 https://github.com/pixiv/ChatVRM
+
 https://github.com/RVC-Boss/GPT-SoVITS
+
 https://unsloth.ai/docs/new/500k-context-length-fine-tuning
+
 https://docs.ollama.com/modelfile
+
 https://huggingface.co/unsloth/Qwen3-1.7B
 
 
