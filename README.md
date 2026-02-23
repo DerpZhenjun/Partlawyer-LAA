@@ -40,14 +40,15 @@ cd Partlawyer-LAA
 
 #### 2.🎙️完善 GPT-SoVITS
 ```bash
-将 鸣潮-e10.ckpt 放入 GPT-SoVITS/GPT_weights/
-将 鸣潮_e10_s5220.pth 放入 GPT-SoVITS/SoVITS_weights/
-将 chinese-hubert-base 放入 GPT_SoVITS/GPT_SoVITS/pretrained_models/
-将 chinese-roberta-wwm-ext-large 放入 GPT_SoVITS/GPT_SoVITS/pretrained_models/
+将 鸣潮-e10.ckpt 放入 GPT-SoVITS\GPT_weights\
+将 鸣潮_e10_s5220.pth 放入 GPT-SoVITS\SoVITS_weights\
+将 chinese-hubert-base 放入 GPT_SoVITS\GPT_SoVITS\pretrained_models\
+将 chinese-roberta-wwm-ext-large 放入 GPT_SoVITS\GPT_SoVITS\pretrained_models\
 ```
 
 #### 3.👤完善 ChatVRM
 ```bash
+将 AvatarSample_B.vrm 放入 ChatVRM\public
 在 ChatVRM\src\features\messages\speakCharacter.ts 修改参考音频及其文本内容：
 params.append("ref_audio_path", "D:\\...\\zh_vo_zhuiyuejie_second_58_46_F.wav");
 params.append("prompt_text", "就像帕斯卡一直想要告诉你真相那样...");
