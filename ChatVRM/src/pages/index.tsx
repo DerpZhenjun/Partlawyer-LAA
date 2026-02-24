@@ -115,15 +115,23 @@ export default function Home() {
       }
 
       const reader = stream.getReader();
-      let receivedMessage = "";
-      let aiTextLog = "";
+      
+      // === 核心修改区 ===
+      let fullAiText = "";     // 用于实时更新屏幕的完整文字（包含标签、思考等）
+      let receivedMessage = ""; // 原来的逻辑：用于攒完整句子发给语音
       let tag = "";
       const sentences = new Array<string>();
+      
       try {
         while (true) {
           const { done, value } = await reader.read();
           if (done) break;
 
+          // 1. 收到任何字符，立刻拼接到 fullAiText，并瞬间刷新屏幕！这就是打字机效果！
+          fullAiText += value;
+          setChatLog([...messageLog, { role: "assistant", content: fullAiText }]);
+
+          // 2. 依然保留原来的逻辑，把字攒给语音模块
           receivedMessage += value;
 
           // 返答内容のタグ部分の検出
@@ -156,7 +164,6 @@ export default function Home() {
 
             const aiText = `${tag} ${sentence}`;
             const aiTalks = textsToScreenplay([aiText], koeiroParam);
-            aiTextLog += aiText;
 
             // 文ごとに音声を生成 & 再生、返答を表示
             const currentAssistantMessage = sentences.join(" ");
@@ -172,28 +179,16 @@ export default function Home() {
         reader.releaseLock();
       }
 
-      // アシスタントの返答をログに追加
-      const messageLogAssistant: Message[] = [
-        ...messageLog,
-        { role: "assistant", content: aiTextLog },
-      ];
-
-      setChatLog(messageLogAssistant);
+      // 循环结束后，确保最终状态稳定
+      setChatLog([...messageLog, { role: "assistant", content: fullAiText }]);
       setChatProcessing(false);
     },
     [systemPrompt, chatLog, handleSpeakAi, openAiKey, koeiroParam]
   );
 
   return (
-    // <div className={"font-M_PLUS_2"}>
     <div style={{ fontFamily: '"Microsoft YaHei", "Heiti SC", sans-serif' }}>
       <Meta />
-      {/*<Introduction
-        openAiKey={openAiKey}
-        koeiroMapKey={koeiromapKey}
-        onChangeAiKey={setOpenAiKey}
-        onChangeKoeiromapKey={setKoeiromapKey}
-      />*/}
       <VrmViewer />
       <MessageInputContainer
         isChatProcessing={chatProcessing}
@@ -214,7 +209,6 @@ export default function Home() {
         handleClickResetSystemPrompt={() => setSystemPrompt(SYSTEM_PROMPT)}
         onChangeKoeiromapKey={setKoeiromapKey}
       />
-      {/* <GitHubLink /> */}
     </div>
   );
 }

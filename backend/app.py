@@ -63,7 +63,18 @@ async def qa_endpoint(req: QuestionRequest):
         except Exception as e:
             yield f"⚠️ 服务器内部错误: {str(e)}"
 
-    return StreamingResponse(generate_stream(), media_type="text/plain")
+    # ==========================================
+    # 核心修复区：加上禁用缓存的 Headers 和事件流 media_type
+    # ==========================================
+    return StreamingResponse(
+        generate_stream(), 
+        media_type="text/event-stream",  # 明确告诉前端和服务器：这是连绵不断的事件流
+        headers={
+            "Cache-Control": "no-cache", # 严禁浏览器缓存
+            "Connection": "keep-alive",  # 保持连接不断开
+            "X-Accel-Buffering": "no"    # 严禁网关/代理层（如 Nginx）缓冲数据
+        }
+    )
 
 if __name__ == "__main__":
     print("🚀 服务启动中: http://localhost:8000")

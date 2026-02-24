@@ -115,7 +115,7 @@ oss2==2.19.1
 packaging
 pandas==2.3.3
 peft==0.17.1
-pillow==12.0.0
+pillow>=10.0.0,<11.0
 platformdirs==4.5.1
 pooch==1.8.2
 proces==0.1.7
