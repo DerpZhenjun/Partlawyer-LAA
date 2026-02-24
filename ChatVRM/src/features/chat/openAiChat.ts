@@ -24,7 +24,7 @@ export async function getChatResponse(messages: Message[], apiKey: string) {
         model: OLLAMA_MODEL,
         messages: messages,
         stream: false, // 非流式
-        max_tokens: 200,
+        max_tokens: 2048,
       }),
     });
 
