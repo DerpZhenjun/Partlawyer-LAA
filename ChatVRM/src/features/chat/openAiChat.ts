@@ -20,7 +20,7 @@ export async function getChatResponse(messages: Message[], apiKey: string) {
       body: JSON.stringify({
         model: OLLAMA_MODEL,
         messages: messages,
-        stream: false,
+        stream: false, // 非流式
       }),
     });
 

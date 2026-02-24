@@ -48,7 +48,6 @@ cd Partlawyer-LAA
 
 #### 3.👤完善 ChatVRM
 ```bash
-将 AvatarSample_B.vrm 放入 ChatVRM\public
 在 ChatVRM\src\features\messages\speakCharacter.ts 修改参考音频及其文本内容：
 params.append("ref_audio_path", "D:\\...\\zh_vo_zhuiyuejie_second_58_46_F.wav");
 params.append("prompt_text", "就像帕斯卡一直想要告诉你真相那样...");
