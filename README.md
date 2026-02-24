@@ -74,7 +74,7 @@ cd ..
 cd frontend
 npm install
 cd ..
-./start.bat # 启动
+./start.bat # 启动，第一次提问数字人触发下载模型
 ```
 
 #### 🍏WSL下微调模型（可选）
