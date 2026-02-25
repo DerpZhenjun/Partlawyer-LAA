@@ -40,8 +40,8 @@ cd Partlawyer-LAA
 
 #### 2.🎙️完善 GPT-SoVITS
 ```bash
-将 鸣潮-e10.ckpt 放入 GPT-SoVITS\GPT_weights\
-将 鸣潮_e10_s5220.pth 放入 GPT-SoVITS\SoVITS_weights\
+将 MingChao-e10.ckpt 放入 GPT-SoVITS\GPT_weights\
+将 MingChao_e10_s5220.pth 放入 GPT-SoVITS\SoVITS_weights\
 将 chinese-hubert-base 放入 GPT_SoVITS\GPT_SoVITS\pretrained_models\
 将 chinese-roberta-wwm-ext-large 放入 GPT_SoVITS\GPT_SoVITS\pretrained_models\
 ```
@@ -91,17 +91,14 @@ python train.py
 ```
 
 ## ❤️ 特别鸣谢
+```bash
 https://www.ai-hobbyist.com/thread-938-1-1.html
-
 https://hub.vroid.com/en/characters/6317386427492305874/models/6271821272125919618
-
 https://github.com/pixiv/ChatVRM
-
 https://github.com/RVC-Boss/GPT-SoVITS
-
 https://unsloth.ai/docs
-
 https://docs.ollama.com/modelfile
+```
 
 https://huggingface.co/unsloth/Qwen3-1.7B
 
