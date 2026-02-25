@@ -22,6 +22,7 @@
 PartLawyer-LAA 是一款专为劳动仲裁设计的辅助平台。系统基于ollama平台接入大模型提供专业法律逻辑支撑，并结合 ChatVRM 3D数字人界面与 GPT-SoVITS 语音克隆技术，为用户提供沉浸式的法律咨询与文书生成服务。
 
 ## 📺 演示视频
+https://www.bilibili.com/video/BV1TnfhBjEbb/
 [![PartLawyer 演示视频](ChatVRM/public/demo_video-封面.jpg)](https://www.bilibili.com/video/BV1TnfhBjEbb/)
 > 点击上方图片跳转至 B 站观看演示视频
 
