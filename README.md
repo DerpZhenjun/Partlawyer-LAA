@@ -98,10 +98,7 @@ https://github.com/pixiv/ChatVRM
 https://github.com/RVC-Boss/GPT-SoVITS
 https://unsloth.ai/docs
 https://docs.ollama.com/modelfile
-```
-
 https://huggingface.co/unsloth/Qwen3-1.7B
-
 https://huggingface.co/datasets/ShengbinYue/DISC-Law-SFT
-
 https://huggingface.co/datasets/Skepsun/lawyer_llama_data
+```
