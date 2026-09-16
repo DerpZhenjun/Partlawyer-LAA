@@ -19,8 +19,8 @@ from transformers import TrainingArguments, EarlyStoppingCallback
 from unsloth import is_bfloat16_supported
 
 # --- 2. 参数配置 ---
-model_name = "/mnt/d/workspace/PartLawyer/ModelFinetune/model"
-dataset_path = "/mnt/d/workspace/PartLawyer/ModelFinetune/dataset/labor_train_dataset.jsonl"
+model_name = "/mnt/d/workspace/LabourLawyer/ModelFinetune/model"
+dataset_path = "/mnt/d/workspace/LabourLawyer/ModelFinetune/dataset/labor_train_dataset.jsonl"
 output_dir = "outputs"
 max_seq_length = 2048
 load_in_4bit = True 

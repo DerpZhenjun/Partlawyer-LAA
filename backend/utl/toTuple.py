@@ -2,7 +2,7 @@ import json
 
 def get_dataset_questions():
     # 将 'path_to_your_file.json' 替换为你的JSON文件的实际文件路径
-    file_path = r'D:\Programming\WenshuWebsite\Partlawyer_Legaldocx\data\json\partlawyer1_version1.json'
+    file_path = r'D:\Programming\WenshuWebsite\LabourLawyer_Legaldocx\data\json\labourlawyer1_version1.json'
 
     # 打开文件并读取其内容
     with open(file_path, 'r', encoding='utf-8') as file:

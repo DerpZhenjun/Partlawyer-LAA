@@ -4,7 +4,7 @@ import glob
 from tqdm import tqdm
 
 # ================= 配置区域 =================
-BASE_DIR = r"D:\workspace\PartLawyer\ModelFinetune\dataset"
+BASE_DIR = r"D:\workspace\LabourLawyer\ModelFinetune\dataset"
 DISC_DIR = os.path.join(BASE_DIR, "DISC-Law-SFT")
 LAWYER_DIR = os.path.join(BASE_DIR, "lawyer_llama_data")
 OUTPUT_FILE = os.path.join(BASE_DIR, "labor_train_dataset.jsonl")

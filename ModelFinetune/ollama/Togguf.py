@@ -1,7 +1,7 @@
 from unsloth import FastLanguageModel
 
 # 配置路径
-lora_path = "/mnt/d/workspace/PartLawyer/ModelFinetune/train/outputs/lora_model"
+lora_path = "/mnt/d/workspace/LabourLawyer/ModelFinetune/train/outputs/lora_model"
 
 # 1. 加载模型
 # 【关键修改】：load_in_4bit 必须设为 False

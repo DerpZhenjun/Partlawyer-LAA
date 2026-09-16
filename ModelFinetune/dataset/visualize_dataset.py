@@ -8,7 +8,7 @@ from wordcloud import WordCloud
 import numpy as np  # 确保导入numpy
 
 # ================= 配置区域 =================
-DATASET_PATH = r"D:\workspace\PartLawyer\ModelFinetune\dataset\labor_train_dataset.jsonl"
+DATASET_PATH = r"D:\workspace\LabourLawyer\ModelFinetune\dataset\labor_train_dataset.jsonl"
 # Windows系统默认黑体路径，用于显示中文
 FONT_PATH = "C:/Windows/Fonts/simhei.ttf" 
 OUTPUT_DIR = "paper_figures" 

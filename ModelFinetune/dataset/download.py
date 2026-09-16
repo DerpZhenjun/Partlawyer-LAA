@@ -4,8 +4,8 @@ from huggingface_hub import snapshot_download
 
 # 配置路径
 CONFIG = {
-    "ShengbinYue/DISC-Law-SFT": r"D:\workspace\PartLawyer\ModelFinetune\dataset\DISC-Law-SFT",
-    "Skepsun/lawyer_llama_data": r"D:\workspace\PartLawyer\ModelFinetune\dataset\lawyer_llama_data"
+    "ShengbinYue/DISC-Law-SFT": r"D:\workspace\LabourLawyer\ModelFinetune\dataset\DISC-Law-SFT",
+    "Skepsun/lawyer_llama_data": r"D:\workspace\LabourLawyer\ModelFinetune\dataset\lawyer_llama_data"
 }
 
 def download_raw_datasets():

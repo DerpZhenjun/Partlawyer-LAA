@@ -22,9 +22,9 @@ os.environ['TRANSFORMERS_OFFLINE'] = '0'
 
 # ================= 2. 配置区域 =================
 # 路径配置
-BASE_MODEL = "/mnt/d/workspace/PartLawyer/ModelFinetune/model" 
-FINETUNED_MODEL = "/mnt/d/workspace/PartLawyer/ModelFinetune/train/outputs4/lora_model"
-DATA_PATH = "/mnt/d/workspace/PartLawyer/ModelFinetune/dataset/labor_train_dataset.jsonl"
+BASE_MODEL = "/mnt/d/workspace/LabourLawyer/ModelFinetune/model" 
+FINETUNED_MODEL = "/mnt/d/workspace/LabourLawyer/ModelFinetune/train/outputs4/lora_model"
+DATA_PATH = "/mnt/d/workspace/LabourLawyer/ModelFinetune/dataset/labor_train_dataset.jsonl"
 OUTPUT_DIR = "evaluation_report_v2" # 改个名，防止覆盖
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
