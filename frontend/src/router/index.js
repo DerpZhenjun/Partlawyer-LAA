@@ -1,83 +1,48 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import PublicHome from '@/views/PublicHome.vue'
+import ProvinceGuide from '@/views/ProvinceGuide.vue'
+import Dashboard from '@/views/Dashboard.vue'
+import CaseCenter from '@/views/CaseCenter.vue'
+import EvidenceCenter from '@/views/EvidenceCenter.vue'
+import DocumentCenter from '@/views/DocumentCenter.vue'
+import DeadlineCenter from '@/views/DeadlineCenter.vue'
+import KnowledgeCenter from '@/views/KnowledgeCenter.vue'
+import ZhejiangLA from '@/views/Zhejiang/LA.vue'
+import ZhejiangEL from '@/views/Zhejiang/EL.vue'
+import GuangdongLA from '@/views/Guangdong/LA.vue'
+import GuangdongEL from '@/views/Guangdong/EL.vue'
+import WIA from '@/views/others/WIA.vue'
 
-// ==========================================
-// 1. 引入页面组件 (Page Components)
-// ==========================================
+const adminMeta = (eyebrow, title) => ({ layout: 'admin', eyebrow, title })
 
-// 首页
-import Home from '@/views/Home.vue'
+const routes = [
+  { path: '/', name: 'public-home', component: PublicHome, meta: { title: '劳动仲裁文书助手' } },
+  { path: '/province/:slug', name: 'province-guide', component: ProvinceGuide, meta: { title: '各省劳动仲裁办理指南' } },
+  { path: '/documents/zhejiang/application', component: ZhejiangLA, meta: { title: '浙江省劳动仲裁申请书' } },
+  { path: '/documents/zhejiang/evidence', component: ZhejiangEL, meta: { title: '浙江省证据清单' } },
+  { path: '/documents/guangdong/application', component: GuangdongLA, meta: { title: '广东省劳动仲裁申请书' } },
+  { path: '/documents/guangdong/evidence', component: GuangdongEL, meta: { title: '广东省证据清单' } },
+  { path: '/documents/injury', component: WIA, meta: { title: '工伤仲裁申请书' } },
 
-// [已删除] QA 组件现在直接在 Home.vue 中引入，不需要在这里配置路由了
-// import QA from '@/views/QA.vue'  <-- 这一行删掉
+  { path: '/admin', name: 'admin-dashboard', component: Dashboard, meta: adminMeta('数据概览', '管理后台') },
+  { path: '/admin/cases', name: 'admin-cases', component: CaseCenter, meta: adminMeta('案件管理', '案件中心') },
+  { path: '/admin/evidence', name: 'admin-evidence', component: EvidenceCenter, meta: adminMeta('材料管理', '证据中心') },
+  { path: '/admin/documents', name: 'admin-documents', component: DocumentCenter, meta: adminMeta('模板与生成', '文书管理') },
+  { path: '/admin/deadlines', name: 'admin-deadlines', component: DeadlineCenter, meta: adminMeta('时效管理', '时效与日程') },
+  { path: '/admin/knowledge', name: 'admin-knowledge', component: KnowledgeCenter, meta: adminMeta('内容管理', '法规知识库') },
 
-// 浙江省相关文书页面
-import ZhejiangLA from '@/views/Zhejiang/LA.vue' // 劳动仲裁申请书
-import ZhejiangEL from '@/views/Zhejiang/EL.vue' // 证据清单
+  { path: '/documents', redirect: '/' },
+  { path: '/cases', redirect: '/admin/cases' },
+  { path: '/evidence', redirect: '/admin/evidence' },
+  { path: '/deadlines', redirect: '/admin/deadlines' },
+  { path: '/knowledge', redirect: '/admin/knowledge' },
+  { path: '/zhejiang/la', redirect: '/documents/zhejiang/application' },
+  { path: '/zhejiang/el', redirect: '/documents/zhejiang/evidence' },
+  { path: '/guangdong/la', redirect: '/documents/guangdong/application' },
+  { path: '/guangdong/el', redirect: '/documents/guangdong/evidence' },
+  { path: '/wia', redirect: '/documents/injury' },
+]
 
-// 广东省相关文书页面
-import GuangdongLA from '@/views/Guangdong/LA.vue' // 劳动仲裁申请书
-import GuangdongEL from '@/views/Guangdong/EL.vue' // 证据清单
-
-// --- 工伤仲裁 (通用文书) ---
-import WIA from '@/views/others/WIA.vue' 
-
-// ==========================================
-// 2. 创建路由实例
-// ==========================================
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  
-  // ==========================================
-  // 3. 定义路由规则 (Routes)
-  // ==========================================
-  routes: [
-    // --- 首页 (根路径) ---
-    {
-      path: '/',
-      name: 'home',
-      component: Home
-    },
-
-    // [已删除] 原来的 /qa 路由块删掉，因为现在它是 Home 页面的一部分
-    // 如果你以后非要一个独立的测试页，记得把 import 路径改成 '@/components/QA.vue'
-
-    // ==========================
-    // 浙江省 (Zhejiang)
-    // ==========================
-    {
-      path: '/zhejiang/la',
-      name: 'zhejiang-la',
-      component: ZhejiangLA
-    },
-    {
-      path: '/zhejiang/el',
-      name: 'zhejiang-el',
-      component: ZhejiangEL
-    },
-
-    // ==========================
-    // 广东省 (Guangdong)
-    // ==========================
-    {
-      path: '/guangdong/la',
-      name: 'guangdong-la',
-      component: GuangdongLA
-    },
-    {
-      path: '/guangdong/el',
-      name: 'guangdong-el',
-      component: GuangdongEL
-    },
-
-    // ==========================
-    // 其他 / 通用文书 (Others)
-    // ==========================
-    {
-      path: '/wia', 
-      name: 'wia',
-      component: WIA
-    }
-  ]
-})
-
+const router=createRouter({history:createWebHistory(import.meta.env.BASE_URL),routes,scrollBehavior(to){return to.hash?{el:to.hash,behavior:'smooth'}:{top:0}}})
+router.afterEach(to=>{document.title=to.meta.title?`${to.meta.title} · LabourLawyer`:'LabourLawyer · 劳动仲裁文书助手'})
 export default router

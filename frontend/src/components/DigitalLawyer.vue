@@ -15,7 +15,7 @@
     
     <iframe 
       ref="vrmFrame"
-      src="http://localhost:3000" 
+      :src="digitalLawyerUrl"
       class="vrm-iframe"
       :style="{ pointerEvents: isResizing ? 'none' : 'auto' }"
       allow="microphone; camera"
@@ -30,6 +30,7 @@
 import { ref, onUnmounted } from 'vue';
 
 const emit = defineEmits(['close']);
+const digitalLawyerUrl = import.meta.env.VITE_DIGITAL_LAWYER_URL || 'http://127.0.0.1:3000';
 
 // --- 状态定义 ---
 const boxWidth = ref(360);  // 初始宽度
@@ -108,6 +109,8 @@ onUnmounted(() => {
   flex-direction: column;
   overflow: hidden;
   transition: box-shadow 0.3s;
+  max-width: calc(100vw - 24px);
+  max-height: calc(100vh - 24px);
 }
 
 .digital-lawyer-modal.is-resizing {
@@ -196,5 +199,19 @@ onUnmounted(() => {
   color: #999;
   font-size: 14px;
   z-index: 1;
+}
+
+@media (max-width: 560px) {
+  .digital-lawyer-modal {
+    right: 8px;
+    bottom: 8px;
+    width: calc(100vw - 16px) !important;
+    height: calc(100vh - 16px) !important;
+    max-width: none;
+    max-height: none;
+    border-radius: 14px;
+  }
+
+  .resize-handle-tl { display: none; }
 }
 </style>

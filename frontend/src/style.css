@@ -1,134 +1,73 @@
-/* 1. 定义全局变量 (方便后期统一改色) */
-:root {
-  --primary-color: #ebab62;       /* 主题金色 */
-  --primary-hover: #d4954d;       /* 按钮悬停色 */
-  --text-dark: #2c3e50;           /* 深色文字 */
-  --text-light: #606266;          /* 浅色文字 */
-  --bg-color: #f5f7fa;            /* 默认背景色 */
-  
-  /* 字体设置：优先使用苹方等适合中文显示的字体 */
-  font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  /* 字体抗锯齿，让文字更清晰 */
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* 2. 核心重置：解决上方白边和背景不铺满的问题 */
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden; /* 防止横向滚动条 */
-}
-
-body {
-  /* 【关键修改】移除原来的 display: flex; place-items: center; */
-  /* 原来的写法强制所有内容垂直居中，这是导致你布局奇怪的根本原因 */
-  display: block; 
-  min-width: 320px;
-  min-height: 100vh;
-  background-color: var(--bg-color);
-  color: var(--text-dark);
-}
-
-/* 3. 容器重置：让 Vue 的根节点占满屏幕 */
-#app {
-  /* 【关键修改】移除 max-width 和 padding，让页面可以全宽显示 */
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-  text-align: left; /* 恢复默认左对齐 */
-  width: 100%;
-  min-height: 100vh;
-}
-
-/* 4. 链接样式优化 */
-a {
-  font-weight: 500;
-  color: var(--primary-color);
-  text-decoration: none; /* 去掉下划线 */
-  transition: color 0.3s;
-}
-
-a:hover {
-  color: var(--primary-hover);
-}
-
-/* 5. 按钮全局样式 (兜底样式) */
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #ffffff;
-  cursor: pointer;
-  transition: all 0.25s;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-/* 6. 滚动条美化 (让右侧滚动条看起来更现代) */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-}
-
-::-webkit-scrollbar-thumb {
-  background: #ccc; 
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #aaa; 
-}
-
-/* 7. 动画库补充 (配合 Vue 的 Animate.css 使用) */
-/* 如果你没装 animate.css，这可以作为简单的替代 */
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translate3d(0, -20px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-.animate__fadeInDown {
-  animation-name: fadeInDown;
-  animation-duration: 0.8s;
-  animation-fill-mode: both;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 20px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-.animate__fadeInUp {
-  animation-name: fadeInUp;
-  animation-duration: 0.8s;
-  animation-fill-mode: both;
-}
+:root { font-family: 'Noto Sans SC', 'Microsoft YaHei', system-ui, sans-serif; color: #14213a; background: #f3f6f9; font-synthesis: none; --navy:#0b1f3a; --navy-2:#14345c; --teal:#0d9488; --teal-dark:#0f766e; --gold:#c8923b; --ink:#14213a; --muted:#667085; --line:#e4e9ef; --surface:#fff; --soft:#f6f8fa; --danger:#c33d4b; --warning:#b7791f; --success:#087f5b; --radius:14px; --shadow:0 12px 34px rgba(28,45,68,.07); }
+* { box-sizing:border-box; }
+html { min-width:320px; background:#f3f6f9; }
+body { margin:0; min-width:320px; min-height:100vh; font-size:16px; }
+button,input,textarea,select { font:inherit; }
+button,a { -webkit-tap-highlight-color:transparent; }
+button { cursor:pointer; }
+a { color:inherit; text-decoration:none; }
+.app-shell { min-height:100vh; }
+.sidebar { position:fixed; inset:0 auto 0 0; z-index:50; width:252px; color:#dce6f4; background:linear-gradient(180deg,#0b1f3a 0%,#07172c 100%); padding:24px 18px 18px; display:flex; flex-direction:column; }
+.brand { display:flex; align-items:center; gap:12px; padding:0 8px 28px; cursor:pointer; }
+.brand-mark { width:42px; height:42px; border:1px solid rgba(255,255,255,.25); border-radius:12px; display:grid; place-items:center; color:#fff; background:linear-gradient(145deg,#178e88,#0c6e70); box-shadow:inset 0 0 0 3px rgba(255,255,255,.06); font-family:serif; font-weight:700; font-size:21px; }
+.brand strong,.brand small,.org-switcher strong,.org-switcher small { display:block; }
+.brand strong { color:#fff; letter-spacing:.2px; }
+.brand small { margin-top:2px; color:#8fa3bc; font-size:12px; }
+.main-nav { display:grid; gap:6px; }
+.main-nav a { display:flex; align-items:center; gap:13px; min-height:46px; padding:0 13px; border-radius:10px; color:#aebfd3; font-size:15px; transition:.18s ease; }
+.main-nav a i { width:18px; text-align:center; font-size:16px; }
+.main-nav a:hover { color:#fff; background:rgba(255,255,255,.06); }
+.main-nav a.router-link-exact-active { color:#fff; background:linear-gradient(90deg,rgba(20,148,136,.28),rgba(20,148,136,.10)); box-shadow:inset 3px 0 #37c7ba; }
+.main-nav a b { margin-left:auto; min-width:23px; padding:2px 6px; border-radius:20px; color:#bfe9e5; background:rgba(55,199,186,.14); text-align:center; font-size:11px; }
+.sidebar-help { margin-top:auto; padding:16px; border:1px solid rgba(255,255,255,.09); border-radius:13px; background:rgba(255,255,255,.045); }
+.sidebar-help .help-icon { display:grid; place-items:center; width:34px; height:34px; margin-bottom:12px; border-radius:9px; color:#ffdd9d; background:rgba(200,146,59,.18); }
+.sidebar-help strong { color:#f7faff; font-size:14px; }
+.sidebar-help p { margin:7px 0 13px; color:#91a5bd; font-size:12px; line-height:1.6; }
+.sidebar-help button { width:100%; padding:9px 12px; border:1px solid rgba(255,255,255,.13); border-radius:8px; color:#eefbf9; background:rgba(13,148,136,.22); font-size:13px; }
+.org-switcher { display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:10px; margin-top:18px; padding:14px 8px 0; border-top:1px solid rgba(255,255,255,.08); }
+.org-avatar { width:32px; height:32px; border-radius:9px; display:grid; place-items:center; color:#fff; background:#284a72; font-size:11px; font-weight:700; }
+.org-switcher strong { color:#e9f0f8; font-size:12px; }
+.org-switcher small { margin-top:2px; color:#7f93ab; font-size:10px; }
+.org-switcher i { color:#7f93ab; }
+.main-stage { min-height:100vh; margin-left:252px; }
+.topbar { position:sticky; top:0; z-index:30; height:78px; padding:0 34px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(222,228,235,.9); background:rgba(255,255,255,.88); backdrop-filter:blur(18px); }
+.topbar-left { display:flex; align-items:center; gap:12px; }
+.topbar-left small,.topbar-left strong { display:block; }
+.topbar-left small { margin-bottom:2px; color:#8a96a6; font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
+.topbar-left strong { color:var(--ink); font-size:18px; }
+.topbar-actions { display:flex; align-items:center; gap:10px; }
+.trust-indicator { margin-right:8px; color:#667085; font-size:12px; }
+.trust-indicator i { margin-right:6px; color:var(--teal); }
+.icon-button { width:40px; height:40px; border:1px solid var(--line); border-radius:10px; color:#4f5d70; background:#fff; }
+.icon-button:hover { border-color:#c4ceda; color:var(--navy); }
+.notification-button { position:relative; }
+.notification-button span { position:absolute; top:8px; right:8px; width:7px; height:7px; border:2px solid #fff; border-radius:50%; background:#e34d59; }
+.primary-action { height:40px; padding:0 16px; border:0; border-radius:10px; color:#fff; background:var(--teal-dark); box-shadow:0 7px 18px rgba(15,118,110,.18); font-weight:600; font-size:14px; }
+.primary-action i { margin-right:7px; }
+.primary-action:hover { background:#0a6862; }
+.mobile-menu { display:none; }
+.page { max-width:1520px; margin:0 auto; padding:28px 34px 52px; }
+.page-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:24px; }
+.page-heading h1 { margin:0 0 5px; color:var(--ink); font-size:clamp(24px,2vw,31px); letter-spacing:-.04em; }
+.page-heading p { margin:0; color:var(--muted); font-size:14px; }
+.section-title { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+.section-title h2 { margin:0; color:#1d2d45; font-size:17px; }
+.section-title a,.text-button { border:0; color:var(--teal-dark); background:transparent; font-size:13px; font-weight:600; }
+.panel { border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow); }
+.panel-header { padding:18px 20px; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; }
+.panel-header h2,.panel-header h3 { margin:0; font-size:16px; }
+.empty-state { padding:48px 22px; color:var(--muted); text-align:center; }
+.empty-state i { display:block; margin-bottom:13px; color:#bac4cf; font-size:32px; }
+.status { display:inline-flex; align-items:center; gap:6px; padding:5px 9px; border-radius:999px; background:#eef3f7; color:#516173; font-size:12px; font-weight:600; }
+.status::before { content:''; width:6px; height:6px; border-radius:50%; background:currentColor; }
+.status.progress { color:#0b7f77; background:#e8f7f5; }
+.status.warning { color:#a56b13; background:#fff7e5; }
+.status.danger { color:#b23443; background:#fff0f2; }
+.status.done { color:#476079; background:#edf2f6; }
+.muted { color:var(--muted); }
+.assistant-fab { position:fixed; right:24px; bottom:24px; z-index:70; min-height:50px; padding:0 20px; border:1px solid rgba(255,255,255,.24); border-radius:999px; color:#fff; background:linear-gradient(135deg,#0e857c,#0b6865); box-shadow:0 14px 35px rgba(12,106,102,.34); font-weight:700; transition:transform .18s ease,box-shadow .18s ease; }
+.assistant-fab i { margin-right:8px; color:#bff5ed; }
+.assistant-fab:hover { transform:translateY(-2px); box-shadow:0 17px 40px rgba(12,106,102,.4); }
+.sidebar-mask { display:none; }
+@media (max-width:960px) { .sidebar { transform:translateX(-102%); transition:transform .25s ease; } .sidebar.open { transform:translateX(0); } .sidebar-mask { position:fixed; inset:0; z-index:45; display:block; background:rgba(4,15,29,.46); backdrop-filter:blur(2px); } .main-stage { margin-left:0; } .mobile-menu { display:inline-grid; place-items:center; } .trust-indicator { display:none; } }
+@media (max-width:680px) { .topbar { height:68px; padding:0 16px; } .topbar-actions .icon-button { display:none; } .primary-action { width:40px; padding:0; font-size:0; } .primary-action i { margin:0; font-size:14px; } .page { padding:22px 16px 88px; } .page-heading { align-items:flex-start; flex-direction:column; } .assistant-fab { right:16px; bottom:16px; } }

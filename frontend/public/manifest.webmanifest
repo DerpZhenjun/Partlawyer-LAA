@@ -1,0 +1,10 @@
+{
+  "name": "LabourLawyer 劳动仲裁文书助手",
+  "short_name": "LabourLawyer",
+  "description": "面向普通劳动者的劳动仲裁申请书、证据清单与办理指南",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f3f6f9",
+  "theme_color": "#0b1f3a",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

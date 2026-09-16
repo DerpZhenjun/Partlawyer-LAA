@@ -1,0 +1,35 @@
+<template>
+  <div class="page documents-page">
+    <div class="page-heading"><div><h1>文书工坊</h1><p>基于案件事实复用信息，按地区要求生成可编辑的标准文书。</p></div><span class="safe-note"><i class="fa-solid fa-shield-halved"></i> 生成前自动检查缺失字段</span></div>
+    <section class="generator-hero">
+      <div><span>智能文书生成</span><h2>少填重复信息，多做关键判断</h2><p>选择案件和文书类型后，系统会自动带入当事人、劳动关系与证据数据。</p><button @click="scrollToTemplates">选择模板 <i class="fa-solid fa-arrow-down"></i></button></div>
+      <div class="hero-checklist"><div><i class="fa-solid fa-check"></i><span><strong>字段一致性校验</strong><small>姓名、日期、金额跨文书保持一致</small></span></div><div><i class="fa-solid fa-check"></i><span><strong>地区模板适配</strong><small>当前支持浙江、广东，持续扩展</small></span></div><div><i class="fa-solid fa-check"></i><span><strong>Word 原格式导出</strong><small>生成后仍可继续审阅和编辑</small></span></div></div>
+    </section>
+    <section ref="templatesRef" class="template-section">
+      <div class="section-title"><h2>选择文书模板</h2><div class="region-switch"><button v-for="item in regions" :key="item" :class="{active:region===item}" @click="region=item">{{ item }}</button></div></div>
+      <div class="template-grid">
+        <RouterLink v-for="item in filteredTemplates" :key="item.title" :to="item.to" class="template-card">
+          <span class="doc-icon" :class="item.tone"><i :class="item.icon"></i></span>
+          <div class="template-copy"><span>{{ item.category }}</span><h3>{{ item.title }}</h3><p>{{ item.desc }}</p><ul><li v-for="tag in item.tags" :key="tag">{{ tag }}</li></ul></div>
+          <div class="template-foot"><span><i class="fa-regular fa-clock"></i> 约 {{ item.time }} 分钟</span><b>开始生成 <i class="fa-solid fa-arrow-right"></i></b></div>
+        </RouterLink>
+      </div>
+    </section>
+    <section class="recent-section"><div class="section-title"><h2>最近生成</h2><button class="text-button">全部记录</button></div><div class="panel recent-empty"><i class="fa-regular fa-file-lines"></i><div><strong>生成的文书会保留在这里</strong><p>你可以随时重新下载或基于原数据创建新版本。</p></div></div></section>
+  </div>
+</template>
+<script setup>
+import { computed, ref } from 'vue'; import { RouterLink } from 'vue-router'
+const region=ref('全部'); const templatesRef=ref(null); const regions=['全部','浙江','广东','通用']
+const templates=[
+ {region:'浙江',category:'仲裁核心文书',title:'劳动仲裁申请书（浙江）',desc:'适用于追索劳动报酬、加班费等常见劳动争议。',tags:['请求金额','事实理由','管辖检查'],time:8,to:'/documents/zhejiang/application',tone:'teal',icon:'fa-solid fa-file-signature'},
+ {region:'广东',category:'仲裁核心文书',title:'劳动仲裁申请书（广东）',desc:'按广东地区格式组织仲裁请求、计算方式与事实。',tags:['仲裁请求','计算明细','地区格式'],time:10,to:'/documents/guangdong/application',tone:'navy',icon:'fa-solid fa-file-signature'},
+ {region:'浙江',category:'证据材料',title:'证据清单（浙江）',desc:'整理证据名称、来源、证明对象并自动编号。',tags:['证据编号','证明对象','页码预留'],time:5,to:'/documents/zhejiang/evidence',tone:'gold',icon:'fa-solid fa-list-check'},
+ {region:'广东',category:'证据材料',title:'证据清单（广东）',desc:'生成符合广东仲裁提交习惯的证据目录。',tags:['证据名称','证明内容','自动编号'],time:5,to:'/documents/guangdong/evidence',tone:'violet',icon:'fa-solid fa-list-check'},
+ {region:'通用',category:'工伤争议',title:'工伤仲裁申请书',desc:'用于工伤待遇、停工留薪期工资等争议事项。',tags:['工伤认定','待遇计算','医疗材料'],time:12,to:'/documents/injury',tone:'red',icon:'fa-solid fa-user-injured'},
+]
+const filteredTemplates=computed(()=>region.value==='全部'?templates:templates.filter(i=>i.region===region.value)); const scrollToTemplates=()=>templatesRef.value?.scrollIntoView({behavior:'smooth'})
+</script>
+<style scoped>
+.safe-note{color:#667a8e;font-size:11px}.safe-note i{margin-right:6px;color:var(--teal)}.generator-hero{position:relative;overflow:hidden;min-height:230px;margin-bottom:28px;padding:34px 38px;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:28px;border-radius:17px;color:#fff;background:linear-gradient(120deg,#0b243f,#113a50 62%,#0b5e5c)}.generator-hero:after{content:'法';position:absolute;right:-20px;bottom:-90px;color:rgba(255,255,255,.035);font:260px serif}.generator-hero>div{position:relative;z-index:1}.generator-hero>div:first-child>span{color:#83d9d1;font-size:11px;letter-spacing:.12em}.generator-hero h2{margin:7px 0 9px;font-size:27px}.generator-hero p{max-width:560px;margin:0 0 18px;color:#b9cad8;font-size:12px;line-height:1.7}.generator-hero button{padding:10px 15px;border:1px solid rgba(255,255,255,.25);border-radius:9px;color:#fff;background:rgba(255,255,255,.1);font-size:12px}.generator-hero button i{margin-left:8px}.hero-checklist{padding:4px 0 4px 25px;border-left:1px solid rgba(255,255,255,.15)}.hero-checklist>div{display:flex;gap:11px;margin:16px 0}.hero-checklist>div>i{width:25px;height:25px;display:grid;place-items:center;border-radius:50%;color:#9be4dc;background:rgba(53,193,179,.16);font-size:10px}.hero-checklist strong,.hero-checklist small{display:block}.hero-checklist strong{font-size:12px}.hero-checklist small{margin-top:3px;color:#aebfcd;font-size:10px}.region-switch{display:flex;padding:3px;border:1px solid var(--line);border-radius:9px;background:#fff}.region-switch button{padding:6px 11px;border:0;border-radius:6px;color:#718092;background:transparent;font-size:11px}.region-switch button.active{color:#fff;background:#173653}.template-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.template-card{min-height:238px;padding:19px;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;background:#fff;transition:.2s}.template-card:hover{transform:translateY(-3px);border-color:#bacdcb;box-shadow:var(--shadow)}.doc-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:11px}.doc-icon.teal{color:#0a7e75;background:#e6f7f4}.doc-icon.navy{color:#315d8a;background:#eaf1f8}.doc-icon.gold{color:#9e6b1b;background:#fff4df}.doc-icon.violet{color:#6e54a0;background:#f1edfa}.doc-icon.red{color:#b43c49;background:#ffedf0}.template-copy>span{display:block;margin-top:16px;color:#82909e;font-size:9px}.template-copy h3{margin:4px 0 7px;font-size:15px}.template-copy p{margin:0;color:#6f7e8f;font-size:10px;line-height:1.6}.template-copy ul{display:flex;gap:5px;flex-wrap:wrap;margin:11px 0 0;padding:0;list-style:none}.template-copy li{padding:3px 6px;border-radius:4px;color:#6f7d8c;background:#f1f4f6;font-size:8px}.template-foot{margin-top:auto;padding-top:13px;display:flex;justify-content:space-between;border-top:1px solid var(--line);font-size:10px}.template-foot>span{color:#8793a0}.template-foot b{color:var(--teal-dark)}.recent-section{margin-top:28px}.recent-empty{padding:22px;display:flex;align-items:center;gap:14px}.recent-empty>i{width:42px;height:42px;display:grid;place-items:center;border-radius:10px;color:#788da3;background:#edf2f7}.recent-empty strong{font-size:12px}.recent-empty p{margin:4px 0 0;color:#84909d;font-size:10px}@media(max-width:1050px){.template-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:700px){.generator-hero{grid-template-columns:1fr;padding:26px 22px}.hero-checklist{display:none}.template-grid{grid-template-columns:1fr}.safe-note{display:none}.section-title{align-items:flex-start;gap:12px;flex-direction:column}.region-switch{width:100%;overflow:auto}}
+</style>
