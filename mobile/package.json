@@ -1,0 +1,22 @@
+{
+  "name": "labourlawyer-mobile",
+  "version": "1.0.0",
+  "private": true,
+  "description": "LabourLawyer Android mobile application",
+  "scripts": {
+    "sync": "npm --prefix ../frontend run build && cap sync android",
+    "android:open": "npm run sync && cap open android",
+    "android:apk": "npm run sync && cd android && gradlew.bat assembleDebug",
+    "android:install": "npm run android:apk && adb install -r android/app/build/outputs/apk/debug/app-debug.apk"
+  },
+  "dependencies": {
+    "@capacitor/android": "8.5.2",
+    "@capacitor/core": "8.5.2",
+    "@capacitor/filesystem": "8.1.3",
+    "@capacitor/share": "8.0.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.5.2",
+    "typescript": "^5.9.3"
+  }
+}

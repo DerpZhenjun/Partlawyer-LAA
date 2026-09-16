@@ -1,0 +1,56 @@
+{
+  "name": "labourlawyer-desktop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "LabourLawyer 劳动仲裁文书助手桌面客户端",
+  "main": "main.cjs",
+  "scripts": {
+    "dev": "electron .",
+    "build:frontend": "npm --prefix ../frontend run build",
+    "dist": "npm run build:frontend && electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^44.4.1",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "cn.labourlawyer.desktop",
+    "productName": "LabourLawyer",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.cjs",
+      "preload.cjs"
+    ],
+    "extraResources": [
+      {
+        "from": "../frontend/dist",
+        "to": "web"
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "build/icon.ico"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "icon": "build/icon.png"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "icon": "build/icon.png"
+    }
+  },
+  "allowScripts": {
+    "electron-winstaller@5.4.0": true,
+    "electron@44.4.1": true
+  }
+}

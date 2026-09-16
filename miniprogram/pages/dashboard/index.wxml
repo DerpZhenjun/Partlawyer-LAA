@@ -1,0 +1,32 @@
+<view class="page">
+  <view class="hero">
+    <text class="kicker">劳动仲裁文书助手</text>
+    <text class="title">选择省份，开始准备申请材料</text>
+    <text class="desc">根据实际工作地或用人单位所在地，查看当地流程并生成对应文书。</text>
+  </view>
+
+  <view class="tip"><text>不知道选哪里？</text>一般可选择实际工作地或用人单位所在地。</view>
+
+  <view class="section-title"><text>常用地区</text><text>已核对官方入口</text></view>
+  <view class="featured-list">
+    <view wx:for="{{featured}}" wx:key="slug" class="province-card" data-slug="{{item.slug}}" bindtap="openProvince">
+      <text class="mark">{{item.mark}}</text>
+      <view><text class="name">{{item.name}}</text><text class="meta">{{item.meta}}</text></view>
+      <text class="status {{item.ready ? 'ready' : 'guide'}}">{{item.ready ? '可生成文书' : '办理指南'}}</text>
+      <text class="arrow">›</text>
+    </view>
+  </view>
+
+  <view class="section-title"><text>全国其他地区</text><text>专用模板陆续适配</text></view>
+  <view class="card all-grid">
+    <view wx:for="{{others}}" wx:key="slug" data-slug="{{item.slug}}" bindtap="openProvince"><text>{{item.name}}</text><text>›</text></view>
+  </view>
+
+  <view class="steps card">
+    <text class="steps-title">申请一般分三步</text>
+    <view><text>1</text><view><text>准备材料</text><text>身份证明、劳动关系材料和证据</text></view></view>
+    <view><text>2</text><view><text>生成文书</text><text>填写申请事项，整理证据清单</text></view></view>
+    <view><text>3</text><view><text>官方提交</text><text>在线提交或前往仲裁委员会窗口</text></view></view>
+  </view>
+  <text class="notice">劳动争议仲裁不收费。本工具提供办事与文书辅助，不替代律师法律意见。</text>
+</view>

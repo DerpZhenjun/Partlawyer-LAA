@@ -1,0 +1,8 @@
+{
+  "description": "LabourLawyer 劳动争议助手微信小程序",
+  "compileType": "miniprogram",
+  "libVersion": "3.5.8",
+  "appid": "touristappid",
+  "projectname": "labourlawyer-mini",
+  "setting": { "urlCheck": false, "es6": true, "minified": true, "postcss": true }
+}
