@@ -6,6 +6,8 @@
 *.vrm
 *.ckpt
 *.model.Q4_K_M
+**/__pycache__/
+*.py[cod]
 
 GPT-SoVITS/鸣潮/
 GPT-SoVITS/GPT_weights/
@@ -16,12 +18,25 @@ ModelFinetune/train/outputs/
 **/checkpoint-*/
 **/unsloth_compiled_cache/
 .cache/
+.*-tmp/
 ModelFinetune/dataset/DISC-Law-SFT
 ModelFinetune/dataset/lawyer_llama_data
 frontend/node_modules/
+frontend/dist/
+desktop/release/
+desktop/node_modules/
+backend/data/*.db
+backend/.env
+frontend/.env
+miniprogram/private.config.json
 **/node_modules/
 node_modules/
 ChatVRM/node_modules/
+.venv/
+.runtime/
+mobile/android/.gradle/
+mobile/android/build/
+mobile/android/app/build/
 
 .next/
 node_modules/
