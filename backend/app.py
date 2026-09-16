@@ -1,14 +1,26 @@
 import uvicorn
 import os
+import sys
+import uuid
 import warnings
+from pathlib import Path
+from typing import Literal
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 warnings.filterwarnings("ignore", category=UserWarning, module="pydantic")
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from dotenv import load_dotenv
 
+load_dotenv(PROJECT_ROOT / "backend" / ".env")
+
+from platform_api import router as platform_router
 from llm_service.QA import generate_lawyer_chat
 
 try:
@@ -22,13 +34,16 @@ except ImportError as e:
     from fastapi import APIRouter
     zj_la_router = zj_el_router = gd_la_router = gd_el_router = wia_router = APIRouter()
 
-app = FastAPI(title="PartLawyer API")
+app = FastAPI(
+    title="LabourLawyer Platform API",
+    description="劳动争议案件、证据、时效、文书与 AI 辅助能力。",
+    version="1.0.0",
+)
 
-origins = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "*" 
-]
+origins = [item.strip() for item in os.getenv(
+    "LABOURLAWYER_CORS_ORIGINS",
+    "http://localhost:5173,http://127.0.0.1:5173,http://localhost,https://localhost,capacitor://localhost"
+).split(",") if item.strip()]
 
 app.add_middleware(
     CORSMiddleware,
@@ -43,17 +58,40 @@ app.include_router(zj_el_router, prefix="/api/zhejiang/el", tags=["浙江证据"
 app.include_router(gd_la_router, prefix="/api/guangdong/la", tags=["广东仲裁"])
 app.include_router(gd_el_router, prefix="/api/guangdong/el", tags=["广东证据"])
 app.include_router(wia_router, prefix="/api/wia", tags=["工伤仲裁"])
+app.include_router(platform_router)
+
+@app.middleware("http")
+async def security_headers(request: Request, call_next):
+    request_id = request.headers.get("X-Request-ID", uuid.uuid4().hex)
+    response = await call_next(request)
+    response.headers["X-Request-ID"] = request_id
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["Referrer-Policy"] = "same-origin"
+    response.headers["Permissions-Policy"] = "camera=(), geolocation=()"
+    return response
 
 @app.get("/")
 async def root():
-    return {"status": "online", "message": "PartLawyer AI Backend is Running."}
+    return {"status": "online", "service": "LabourLawyer Platform API", "version": app.version, "docs": "/docs"}
+
+@app.get("/health", tags=["系统"])
+async def health():
+    return {"status": "healthy", "service": "api"}
+
+class ChatMessage(BaseModel):
+    role: Literal["user", "assistant"]
+    content: str = Field(min_length=1, max_length=8000)
+
 
 class QuestionRequest(BaseModel):
-    question: str
+    question: str = Field(min_length=1, max_length=8000)
+    history: list[ChatMessage] = Field(default_factory=list, max_length=12)
 
 @app.post("/api/ask")
 async def qa_endpoint(req: QuestionRequest):
-    chat_history = [{"role": "user", "content": req.question}]
+    chat_history = [message.model_dump() for message in req.history]
+    if not chat_history or chat_history[-1] != {"role": "user", "content": req.question}:
+        chat_history.append({"role": "user", "content": req.question})
 
     async def generate_stream():
         try:
